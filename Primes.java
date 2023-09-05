@@ -26,24 +26,12 @@ public class Primes {
                 for (int mult = outer*outer; mult < allNums.length; mult+= outer)
                     allNums[mult] = false;
         }
+        //Printing our the final result of primes (still set to true) from 2
         for (int i=2; i < allNums.length; i++){
             if (allNums[i] == true)
                 System.out.println(i);
         }
-        //return allNums;
         
     }
-    /* 
-    public static int[] addTList(int adding, int arr[]){
-         // Method creates a new array (original+1) size to add all items
-         // and new item to the end of the array. Unused method for previous approach
-         
-        int newarr []  = new int[arr.length + 1];
-        for (int i =0; i< arr.length; i++){
-            newarr[i] = arr[i];
-        }
-        newarr[arr.length] = adding;
-        return newarr;
-    }
-    */
+   
 }
