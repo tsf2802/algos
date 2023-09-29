@@ -5,13 +5,13 @@ public class SmallestTwo {
         Scanner s = new Scanner(System.in);
         int testval = s.nextInt();
         //Initializing the two return integer, fsmall for first smallest, ssmall for second
-        int fsmall = 10000;
-        int ssmall = 10000;
+        int fsmall = Integer.MAX_VALUE;
+        int ssmall = Integer.MAX_VALUE;
         for (int i = 0; i<testval; i++){
             //retarr keeps track of changes in each iteration
             int [] retarr = {fsmall,ssmall};
             int input = s.nextInt();
-            if (fsmall >= 10000 && ssmall >= 10000){
+            if (fsmall >= Integer.MAX_VALUE && ssmall >= Integer.MAX_VALUE){
                 //runs at the beginning to set the smallest value
                 retarr[0] = input;
             }else{
@@ -35,13 +35,4 @@ public class SmallestTwo {
         System.out.println(fsmall);
         System.out.println(ssmall);
     }
-
-        /* 
-        System.out.println("array: ");
-        for( int k = 0; k< retarr.length; k++){
-            System.out.print(retarr[k]+",");
-        }
-        System.out.println("");
-        */
-
 }
