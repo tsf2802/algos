@@ -117,7 +117,7 @@ public class Planters {
                 int tempval = arr[item];
                 arr[item] = closest;
                 arr2[closestIndex] = tempval;
-                ob.sort(arr2, 0, arr2.length - 1);
+                // ob.sort(arr2, 0, arr2.length - 1);
             }
         }
         // final output
