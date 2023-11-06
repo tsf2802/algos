@@ -25,11 +25,13 @@ public class IncrSubseqGap {
     
     }
     private static void dpSolution(int[]input, int gap) {
+        //main dp solution logic and initalization of array
         int [] DParr = new int [input.length];
         DParr[0] = input[0];
         for (int i =0; i < input.length;i++){
             DParr[i] = input[i];
             for (int j= 0; j < i; j++){
+                //logic with gap checking
                 if (input[i] >input[j] && i-j <= gap){
                     if (DParr[i]>= (input[i]+DParr[j])){
                         DParr[i] = DParr[i];
@@ -40,6 +42,7 @@ public class IncrSubseqGap {
             }
         }
         int max =0;
+        //looking for the max amount because no guarantee it is at end
         for (int i = 0; i < DParr.length; i++) {
             if (DParr[i] > max){
                 max = DParr[i];

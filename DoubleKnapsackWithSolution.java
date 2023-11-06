@@ -13,6 +13,7 @@ public class DoubleKnapsackWithSolution {
         int[] cost = new int[n];
         //One loop to create the weight and cost arrays
         for (int i = 0; i < n ; i++) {
+            //getting inputs from knapsack
             String inputt = s.nextLine();
             String[] inputsplit = inputt.split(" ");
             int wei = Integer.parseInt(inputsplit[0]);
@@ -25,6 +26,7 @@ public class DoubleKnapsackWithSolution {
         for (int i = 1; i <= n; i++) {
             for (int w1 = 0; w1 <= knapsize1; w1++) {
                 for (int w2 = 0; w2 <= knapsize2; w2++) {
+                    //main logic that looks at what to include and what to include in second as it traverses
                     int exclude = dp[i - 1][w1][w2];
                     int includeInFirst = (w1 >= weight[i - 1]) ? dp[i - 1][w1 - weight[i - 1]][w2] + cost[i - 1] : 0; 
                     int includeInSecond = (w2 >= weight[i - 1]) ? dp[i - 1][w1][w2 - weight[i - 1]] + cost[i - 1] : 0;
@@ -58,7 +60,7 @@ public class DoubleKnapsackWithSolution {
                 }
             }
         }
-
+        //printing out the two knapsack items
         for (int i = 0; i < firstCount; i++) {
             System.out.print(firstBackpackItems[i] + " ");
         }
