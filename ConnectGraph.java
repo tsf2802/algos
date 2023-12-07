@@ -1,8 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.Scanner;
-
 public class ConnectGraph {
      public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
@@ -30,9 +26,9 @@ public class ConnectGraph {
         }
         s.close();
         System.out.println(countIndividualGraphs(adjlist)-1);
-    
      }
      public static void addEdge(int[][] adjacencyList, int vertex, int value) {
+        //function exists to modify the array size by +1 and 
         int[] oldArray = adjacencyList[vertex];
         int[] newArray = new int[oldArray.length + 1];
         for (int i = 0; i < oldArray.length; i++) {
@@ -42,10 +38,10 @@ public class ConnectGraph {
         adjacencyList[vertex] = newArray;
     }
     public static int countIndividualGraphs(int[][] adjList) {
+        //function calls the dfs method when vetrex is unvisited. Does this until all vertices in boolean are true
         int numVertices = adjList.length;
         boolean[] visited = new boolean[numVertices];
         int numGraphs = 0;
-
         for (int vertex = 0; vertex < numVertices; vertex++) {
             if (!visited[vertex]) {
                 dfs(vertex, adjList, visited);
@@ -54,12 +50,31 @@ public class ConnectGraph {
         }
         return numGraphs;
     }
-
-    private static void dfs(int vertex, int[][] adjList, boolean[] visited) {
-        visited[vertex] = true;
-        for (int neighbor : adjList[vertex]) {
-            if (!visited[neighbor]) {
-                dfs(neighbor, adjList, visited);
+    private static void dfs(int startVertex, int[][] adjList, boolean[] visited) {
+        //dfs that takes in the parameters the adjacencyList (resembling the graph)
+        //a boolean array to keep track of unvisited/visited nodes
+        //startVertex identifies the inital node that the DFS should ran on.
+        int numVertices = adjList.length;
+        int[] stack = new int[numVertices];
+        int stackSize = 0;
+        //stack keeps track of items that needs to be explored. follows standard DFS implementation
+        stack[stackSize++] = startVertex;
+        while (stackSize > 0) {
+            int vertex = stack[--stackSize];
+            if (!visited[vertex]) {
+                visited[vertex] = true;
+                for (int neighbor : adjList[vertex]) {
+                    if (!visited[neighbor]) {
+                        if (stackSize == stack.length) {
+                            int[] newStack = new int[stack.length * 2];
+                            for (int i = 0; i < stack.length; i++) {
+                                newStack[i] = stack[i];
+                            }
+                            stack = newStack;
+                        }
+                        stack[stackSize++] = neighbor;
+                    }
+                }
             }
         }
     }
